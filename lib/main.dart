@@ -1,4 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:wildsense_ai/screens/dashboardpage/homescreen/homescreen.dart';
+import 'package:wildsense_ai/screens/loginpages/forgetpassword/resetpassword.dart';
+import 'package:wildsense_ai/screens/loginpages/loginpage.dart';
+import 'package:wildsense_ai/screens/loginpages/newpassword/newpasswordscreen.dart';
+import 'package:wildsense_ai/screens/loginpages/otpverify/otpverificationscreen.dart';
+import 'package:wildsense_ai/screens/loginpages/passwordsetted/passwordsetted.dart';
+import 'package:wildsense_ai/screens/onboardingscreen/onboardingscreen.dart';
+import 'package:wildsense_ai/screens/registerscreen/profilecreated/emailverification.dart';
+import 'package:wildsense_ai/screens/registerscreen/registerscreen.dart';
+import 'package:wildsense_ai/screens/splashscreen/splashscreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,8 +21,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(),
+      debugShowCheckedModeBanner: false,
+
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeScreen(),
+        '/onboarding' : (context) => const OnboardingScreen(),
+        '/loginpage' : (context) => const LoginPage(),
+        '/registerpage' : (context) => const RegisterPage(),
+        '/resetpassword' : (context) => const ResetPassword(),
+        '/otpscreen' : (context) => const OtpScreen(),
+        '/newpassword' : (context) => const NewPassword(),
+        '/passwordsetted' : (context) => const PasswordSetted(),
+        '/emailverification' : (context) => const EmailVerification(),
+        '/homescreen' : (context) => const HomeScreen(),
+      },
+
     );
   }
 }
