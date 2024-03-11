@@ -25,24 +25,33 @@ class RegisterPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Padding(
-                      padding: const EdgeInsets.only(right: 30),
-                      child: Image.asset(
-                        'assets/images/character2.png',
+                        padding: const EdgeInsets.only(right: 30),
+                        child: Image.asset(
+                          'assets/images/character2.png',
+                        ),
                       ),
-                    ),
-        ],
+                    ],
                   ),
                   Stack(
                     children: [
                       Image.asset(
                         'assets/images/rounded.png',
-                        fit: BoxFit.fitHeight,
+                        fit: BoxFit.scaleDown,
                       ),
-                       Padding(
-                        padding:  EdgeInsets.all(20.0),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
                         child: Column(
                           children: [
-                             Center(
+                            IconButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/welcomepage');
+                              },
+                              icon: Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const Center(
                               child: FadeInAnimation(
                                 delay: 1,
                                 child: Text(
@@ -56,7 +65,7 @@ class RegisterPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                             FadeInAnimation(
+                            FadeInAnimation(
                               delay: 1.3,
                               child: Text(
                                 'Create your Account 😎',
@@ -108,17 +117,18 @@ class RegisterPage extends StatelessWidget {
                                 obsecuretext: true,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             FadeInAnimation(
                               delay: 2.3,
                               child: CustomElevatedButton(
                                 function: () {
-                                  Navigator.pushNamed(context, '/emailverification');
+                                  Navigator.pushNamed(
+                                      context, '/emailverification');
                                 },
                                 message: 'Register',
-                                gradientColors: [
+                                gradientColors: const [
                                   Color(0xFF9C3FE4),
                                   Color(0xFFC65647),
                                 ],
@@ -128,29 +138,11 @@ class RegisterPage extends StatelessWidget {
                                 width: double.infinity,
                               ),
                             ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            FadeInAnimation(
-                              delay: 2.6,
-                              child: Image.asset(
-                                'assets/images/signwiwth.png',
-                              ),
-                            ),
                             const SizedBox(
                               height: 15,
                             ),
-                            FadeInAnimation(
-                              delay: 2.9,
-                              child: IconButton(
-                                onPressed: () {},
-                                icon: Image.asset(
-                                  'assets/images/google.png'
-                                ),
-                              ),
-                            ),
                             const SizedBox(
-                              height: 15,
+                              height: 30,
                             ),
                             FadeInAnimation(
                               delay: 2.6,
@@ -162,17 +154,20 @@ class RegisterPage extends StatelessWidget {
                                     style: TextStyle(
                                         color: Colors.grey,
                                         fontFamily: 'SF Pro',
-                                        fontSize: 16
-                                    ),
+                                        fontSize: 16),
                                   ),
-                                  TextButton(onPressed: () {
-                                    Navigator.pushNamed(context, '/loginpage');
-                                  }, child: const Text('Login',
-                                    style: TextStyle(
-                                        color: Colors.white70,
-                                        fontFamily: 'SF Pro',
-                                        fontSize: 16
-                                    ),))
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(
+                                            context, '/loginpage');
+                                      },
+                                      child: const Text(
+                                        'Login',
+                                        style: TextStyle(
+                                            color: Colors.white70,
+                                            fontFamily: 'SF Pro',
+                                            fontSize: 16),
+                                      ))
                                 ],
                               ),
                             ),

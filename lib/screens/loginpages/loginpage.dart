@@ -20,6 +20,7 @@ class LoginPage extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             SingleChildScrollView(
+              physics: NeverScrollableScrollPhysics(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -33,26 +34,35 @@ class LoginPage extends StatelessWidget {
                     children: [
                       Image.asset(
                         'assets/images/rounded.png',
-                        fit: BoxFit.fitHeight,
+                        fit: BoxFit.contain,
                       ),
-                        Padding(
+                      Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Column(
                           children: [
+                            IconButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/welcomepage');
+                              },
+                              icon: Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                              ),
+                            ),
                             const Center(
-                            child: FadeInAnimation(
-                              delay: 1.2,
-                              child: Text(
-                                'Welcome Back!',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 40,
-                                  fontFamily: 'SF Pro',
-                                  fontWeight: FontWeight.w700,
+                              child: FadeInAnimation(
+                                delay: 1.2,
+                                child: Text(
+                                  'Welcome Back!',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 40,
+                                    fontFamily: 'SF Pro',
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
                             const SizedBox(
                               height: 10,
                             ),
@@ -71,7 +81,7 @@ class LoginPage extends StatelessWidget {
                             const SizedBox(
                               height: 20,
                             ),
-                           const  FadeInAnimation(
+                            const FadeInAnimation(
                               delay: 1.6,
                               child: CustomTextFormField(
                                 hinttext: 'Enter Email',
@@ -84,44 +94,46 @@ class LoginPage extends StatelessWidget {
                             FadeInAnimation(
                               delay: 1.8,
                               child: TextFormField(
-                              obscureText: flag ? true : false,
-                              decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.all(18),
-                                hintText: "Enter your password",
-                                hintStyle: Common().hinttext,
-                                border: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    color: Colors.white,
+                                obscureText: flag ? true : false,
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.all(18),
+                                  hintText: "Enter your password",
+                                  hintStyle: Common().hinttext,
+                                  border: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      color: Colors.white,
+                                    ),
+                                    borderRadius: BorderRadius.circular(12),
                                   ),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                suffixIcon: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.remove_red_eye_outlined,
-                                    color: Colors.white38,
+                                  suffixIcon: IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.remove_red_eye_outlined,
+                                      color: Colors.white38,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
                             ),
                             FadeInAnimation(
                               delay: 2.0,
                               child: Align(
                                 alignment: Alignment.centerRight,
                                 child: TextButton(
-                                    onPressed: () {
-                                      Navigator.pushNamed(context, '/resetpassword');
-                                    },
-                                    child: const Text(
-                                      "Forget Password?",
-                                      style: TextStyle(
-                                        color: Colors.white54,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily: 'SF Pro',
-                                      ),
-                                    )),
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, '/resetpassword');
+                                  },
+                                  child: const Text(
+                                    "Forget Password?",
+                                    style: TextStyle(
+                                      color: Colors.white54,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: 'SF Pro',
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                             const SizedBox(
@@ -131,7 +143,7 @@ class LoginPage extends StatelessWidget {
                               delay: 2.2,
                               child: CustomElevatedButton(
                                 message: 'Login',
-                                gradientColors: const[
+                                gradientColors: const [
                                   Color(0xFF9C3FE4),
                                   Color(0xFFC65647),
                                 ],
@@ -140,16 +152,18 @@ class LoginPage extends StatelessWidget {
                                 height: 50.0,
                                 width: double.infinity,
                                 function: () {
-                                  Navigator.pushNamed(context, '/registerpage');
+                                  Navigator.pushNamed(context, '/homescreen');
                                 },
                               ),
                             ),
                             const SizedBox(
                               height: 20,
                             ),
-                            FadeInAnimation(delay: 2.4, child: Image.asset(
-                              'assets/images/continuewith.png'
-                            ),),
+                            FadeInAnimation(
+                              delay: 2.4,
+                              child:
+                                  Image.asset('assets/images/continuewith.png'),
+                            ),
                             const SizedBox(
                               height: 20,
                             ),
@@ -160,11 +174,10 @@ class LoginPage extends StatelessWidget {
                                 icon: Image.asset('assets/images/google.png'),
                               ),
                             ),
-
                             const SizedBox(
-                              height: 50,
+                              height: 20,
                             ),
-                             FadeInAnimation(
+                            FadeInAnimation(
                               delay: 2.6,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -172,23 +185,26 @@ class LoginPage extends StatelessWidget {
                                   const Text(
                                     "Don't have an Account?",
                                     style: TextStyle(
-                                      color: Colors.grey,
-                                      fontFamily: 'SF Pro',
-                                      fontSize: 16
-                                    ),
+                                        color: Colors.grey,
+                                        fontFamily: 'SF Pro',
+                                        fontSize: 16),
                                   ),
-                                  TextButton(onPressed: () {
-                                    Navigator.pushNamed(context, '/registerpage');
-                                  }, child: const Text('Register',
-                                  style: TextStyle(
-                                      color: Colors.white70,
-                                      fontFamily: 'SF Pro',
-                                      fontSize: 16
-                                  ),))
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(
+                                            context, '/registerpage');
+                                      },
+                                      child: const Text(
+                                        'Register',
+                                        style: TextStyle(
+                                            color: Colors.white70,
+                                            fontFamily: 'SF Pro',
+                                            fontSize: 16),
+                                      ))
                                 ],
                               ),
                             ),
-                        ],
+                          ],
                         ),
                       ),
                     ],

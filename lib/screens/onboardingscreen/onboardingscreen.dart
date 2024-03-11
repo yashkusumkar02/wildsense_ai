@@ -1,9 +1,51 @@
+import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 import 'package:wildsense_ai/common/fade_animation.dart';
 
+class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({Key? key}) : super(key: key);
 
-class OnboardingScreen extends StatelessWidget {
-  const OnboardingScreen({super.key});
+  @override
+  _OnboardingScreenState createState() => _OnboardingScreenState();
+}
+
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  late VideoPlayerController _videoPlayerController;
+  late ChewieController _chewieController;
+
+  @override
+  void initState() {
+    super.initState();
+    _videoPlayerController = VideoPlayerController.asset(
+      'assets/videos/your_video.mp4',
+    )..initialize().then((_) {
+        setState(() {
+          _chewieController = ChewieController(
+            videoPlayerController: _videoPlayerController,
+            autoPlay: true,
+            looping: true,
+            aspectRatio: 3 / 4,
+            // Adjust aspect ratio as per your container
+            allowPlaybackSpeedChanging: false,
+            // Remove playback speed control
+            allowMuting: false,
+            showControls: false,
+            // Hide controls
+            placeholder: Container(
+              color: Colors.black,
+            ),
+          );
+        });
+      });
+  }
+
+  @override
+  void dispose() {
+    _videoPlayerController.dispose();
+    _chewieController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +55,7 @@ class OnboardingScreen extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.asset(
-              'assets/images/backgroundimage.png'
-            ),
+            Image.asset('assets/images/backgroundimage.png'),
             SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -29,31 +69,34 @@ class OnboardingScreen extends StatelessWidget {
                     FadeInAnimation(
                       delay: 1,
                       child: Container(
-                        width: 300,
-                        height: 380,
+                        width: 280,
+                        height: 375,
                         decoration: ShapeDecoration(
                           color: const Color(0xFF312434),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(38),
                           ),
-                          shadows: const [BoxShadow(
-                            color: Color(0x3FFFFFFF),
-                            blurRadius: 28.30,
-                            offset: Offset(0,0),
-                            spreadRadius: 0,
-                          ),
+                          shadows: const [
+                            BoxShadow(
+                              color: Color(0x3FFFFFFF),
+                              blurRadius: 28.30,
+                              offset: Offset(0, 0),
+                              spreadRadius: 0,
+                            ),
                           ],
                         ),
-                        child: const Center(
-                          child: Text(
-                            'VIDEO',
-                            style: TextStyle(
-                              color: Colors.white24,
-                              fontSize: 50,
-                              fontFamily: 'SF Pro',
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(38),
+                          child: _chewieController != null &&
+                                  _chewieController
+                                      .videoPlayerController.value.isInitialized
+                              ? Chewie(
+                                  controller: _chewieController,
+                                )
+                              : Center(
+                                  child:
+                                      CircularProgressIndicator(), // Display a loading indicator
+                                ),
                         ),
                       ),
                     ),
@@ -93,7 +136,15 @@ class OnboardingScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          FadeInAnimation(delay: 1.9,child: IconButton(onPressed: () {Navigator.pushNamed(context, '/loginpage');}, icon: Image.asset('assets/images/nextbutton.png'),)),
+                          FadeInAnimation(
+                            delay: 1.9,
+                            child: IconButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/welcomepage');
+                              },
+                              icon: Image.asset('assets/images/nextbutton.png'),
+                            ),
+                          ),
                         ],
                       ),
                     )

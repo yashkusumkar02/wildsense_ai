@@ -9,6 +9,7 @@ import 'package:wildsense_ai/screens/onboardingscreen/onboardingscreen.dart';
 import 'package:wildsense_ai/screens/registerscreen/profilecreated/emailverification.dart';
 import 'package:wildsense_ai/screens/registerscreen/registerscreen.dart';
 import 'package:wildsense_ai/screens/splashscreen/splashscreen.dart';
+import 'package:wildsense_ai/screens/welcomepage/welcome_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,8 +26,9 @@ class MyApp extends StatelessWidget {
 
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomeScreen(),
+        '/': (context) => const SplashScreen(),
         '/onboarding' : (context) => const OnboardingScreen(),
+        '/welcomepage': (context) => const WelcomePage(),
         '/loginpage' : (context) => const LoginPage(),
         '/registerpage' : (context) => const RegisterPage(),
         '/resetpassword' : (context) => const ResetPassword(),

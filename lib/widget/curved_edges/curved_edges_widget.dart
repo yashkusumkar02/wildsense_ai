@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'curved_edges.dart';
 
-class CurvedEdgestWidget extends StatelessWidget {
-  const CurvedEdgestWidget({
-    super.key, required this.child,
-  });
+class CurvedEdgesWidget extends StatelessWidget {
+  const CurvedEdgesWidget({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
 
   final Widget child;
 
